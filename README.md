@@ -5,6 +5,6 @@ When the doorbell is pressed, the owner recieves an SMS, notifying the presence 
 It has various uses, ranging from opening the door for a package to letting you in when you forget your keys. 
 
 Team Members:
-Zak Tabatznik 
-Waseem Ghozayel 
+Zak Tabatznik, 
+Waseem Ghozayel,
 Sarah Meister
