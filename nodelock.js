@@ -5,8 +5,8 @@ var twilio = require('twilio'),
 var app = express();
 
 // Twilio Credentials 
-var accountSid = 'AC4a7ebaa921b3eb9e5a673d3b39251b55'; 
-var authToken = '25f73830c015e1e343cce22f8e10aa8c'; 
+var accountSid = 'ACCOUNTSID'; 
+var authToken = 'AUTHTOKEN'; 
  
 //require the Twilio module and create a REST client 
 var client = require('twilio')(accountSid, authToken); 
@@ -22,8 +22,8 @@ var serialPort = new SerialPort("COM3");
 
 app.use(express.bodyParser());
 
-app.post('/sms', twilio.webhook('25f73830c015e1e343cce22f8e10aa8c', { host:'64575887.ngrok.com', protocol:'http' }), function(req, res){
-  if (req.body.From == '+15195519418' && req.body.Body == "Unlock") {
+app.post('/sms', twilio.webhook('AUTHTOKEN', { host:'fooo.ngrok.com', protocol:'http' }), function(req, res){
+  if (req.body.From == 'PHONENUMBER' && req.body.Body == "Unlock") {
     console.log("verified number!");
 
     serialPort.once('data', function(data) {
@@ -46,7 +46,7 @@ app.post('/sms', twilio.webhook('25f73830c015e1e343cce22f8e10aa8c', { host:'6457
       console.log('results ' + results);
     });
 
-  } else if (req.body.From == '+15195519418' && req.body.Body == "Lock"){
+  } else if (req.body.From == '+PHONENUMBER' && req.body.Body == "Lock"){
 
         console.log("verified number!");
 
@@ -90,8 +90,8 @@ serialPort.on('open', function(){
     if (data.toString().indexOf('G')> -1) {
         console.log("Someone at the door");
         client.messages.create({ 
-  to: "+15195519418", 
-  from: "+14387000312", 
+  to: "PHONENUMBER", 
+  from: "NUMBER", 
   body: "Someone is at the door",   
 }, function(err, message) { 
 });
